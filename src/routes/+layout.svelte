@@ -9,22 +9,43 @@
   }
 </script>
 
-<nav>
-  <ul>
-    <li><a href="/">Home</a></li>
-    <li><a href="/Items">Products</a></li>
-    {#if isAuthenticated}
-      <li><a href="/profile">Profile</a></li>
-      <li><button on:click={handleLogout}>Logout</button></li>
-    {:else}
-      <li><a href="/Login">Login</a></li>
-      <li><a href="/register">Register</a></li>
-    {/if}
-  </ul>
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/">Shoping Today</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/Items">Products</a>
+        </li>
+        {#if isAuthenticated}
+          <li class="nav-item">
+            <a class="nav-link" href="/profile">Profile</a>
+          </li>
+          <li class="nav-item">
+            <button class="nav-link btn" on:click={handleLogout}>Logout</button>
+          </li>
+        {:else}
+          <li class="nav-item">
+            <a class="nav-link" href="/Login">Login</a>
+          </li>
+        {/if}
+      </ul>
+      <form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
 </nav>
 
 <div class="main">
-<slot />
+  <slot />
 </div>
 
 <style>
