@@ -47,22 +47,20 @@
   }
 </script>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
   <div class="container-fluid d-flex justify-content-between align-items-center">
-    <a class="navbar-brand" href="/">Shopping Today</a>
-    <div class="d-flex align-items-center">
-      <button
-        class="navbar-toggler ms-2"
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-    </div>
+    <a class="navbar-brand fw-bold text-uppercase" href="/">Shopping Today</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
@@ -76,7 +74,7 @@
             <a class="nav-link" href="/profile">Profile</a>
           </li>
           <li class="nav-item">
-            <button class="nav-link btn" on:click={handleLogout}>Logout</button>
+            <button class="nav-link btn btn-link p-0" on:click={handleLogout}>Logout</button>
           </li>
         {:else}
           <li class="nav-item">
@@ -86,16 +84,16 @@
       </ul>
       <form class="d-flex position-relative" role="search" on:submit={handleSearch}>
         <input
-          class="form-control me-2"
+          class="form-control me-2 border-0 rounded-pill shadow-sm"
           type="search"
           placeholder="Search"
           aria-label="Search"
           bind:value={searchQuery}
           on:input={handleInput}
         />
-        <button class="btn btn-outline-success" type="submit">Search</button>
+        <button class="btn btn-success rounded-pill shadow-sm" type="submit">Search</button>
         {#if showSuggestions}
-          <ul class="suggestions-list position-absolute">
+          <ul class="suggestions-list position-absolute mt-2">
             {#each suggestions as suggestion}
               <li>
                 <button
@@ -114,18 +112,44 @@
   </div>
 </nav>
 
-<div class="container">
+<div class="container mt-4">
   <slot />
 </div>
 
+<!-- Footer -->
+<footer class="footer bg-dark text-white text-center py-4 mt-5">
+  <div class="container">
+    <p class="mb-2">© 2024 Shopping Today. All Rights Reserved.</p>
+    <p class="mb-0">Made with ❤️ by Your Team</p>
+  </div>
+</footer>
+
 <style>
-  .container {
-    padding-top: 1rem;
+  :global(body) {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+  }
+
+  .navbar-brand {
+    font-size: 1.5rem;
+    color: #fff !important;
+  }
+
+  .nav-link {
+    color: #ccc !important;
+    transition: color 0.3s;
+  }
+
+  .nav-link:hover {
+    color: #fff !important;
   }
 
   .suggestions-list {
     background: white;
-    border: 1px solid #ccc;
+    border: 1px solid #ddd;
+    border-radius: 5px;
     list-style: none;
     margin: 0;
     max-height: 150px;
@@ -135,6 +159,7 @@
     top: 100%;
     width: 100%;
     z-index: 1000;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
 
   .suggestion-item {
@@ -144,10 +169,34 @@
     width: 100%;
     border: none;
     background: none;
-    color: black;
+    color: #333;
+    font-size: 0.9rem;
+    transition: background 0.3s;
   }
 
   .suggestion-item:hover {
-    background: #f1f1f1;
+    background: #f8f9fa;
+  }
+
+  input:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  }
+
+  /* Footer Styles */
+  .footer {
+    background-color: #343a40;
+    color: #fff;
+    text-align: center;
+    padding: 1.5rem;
+  }
+
+  .footer p {
+    margin: 0.5rem 0;
+  }
+
+  .footer .container {
+    max-width: 1140px;
+    margin: 0 auto;
   }
 </style>
