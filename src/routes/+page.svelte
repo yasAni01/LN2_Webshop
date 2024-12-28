@@ -11,17 +11,27 @@
         return array;
     }
 
-    // Get 4 random items
-    let randomItems = shuffle(data.items).slice(0, 4);
+    // Get 6 random items
+    let randomItems = shuffle(data.items).slice(0, 6);
+
+    // Group items into sets of 3
+    let groupedItems = [];
+    for (let i = 0; i < randomItems.length; i += 3) {
+        groupedItems.push(randomItems.slice(i, i + 3));
+    }
 </script>
 
 <h1>Recommended items!</h1>
 
 <div id="carouselExampleFade" class="carousel slide carousel-fade">
     <div class="carousel-inner">
-        {#each randomItems as item, index}
-            <div class="carousel-item {index === 0 ? 'active' : ''}">
-                <Items {item}></Items>
+        {#each groupedItems as group, groupIndex}
+            <div class="carousel-item {groupIndex === 0 ? 'active' : ''}">
+                <div class="item-group">
+                    {#each group as item}
+                        <Items {item}></Items>
+                    {/each}
+                </div>
             </div>
         {/each}
     </div>
@@ -38,14 +48,16 @@
 <style>
     .carousel-item {
         text-align: center;
-        max-width: 300px; /* Adjust the size of the item card */
-        margin: 0 auto; /* Center the item card */
     }
-    .carousel-item img {
-        display: block;
-        margin: 0 auto; /* Center the image */
-        max-width: 100%; /* Ensure the image fits within the item card */
-        max-height: 200px; /* Adjust the height as needed */
+    .item-group {
+        display: flex;
+        justify-content: center;
+        gap: 10px; /* Adjust the gap between items */
+    }
+    Items {
+        max-width: 300px; /* Adjust the size of the item card */
+        width: 300px; /* Fixed width */
+        height: 400px; /* Fixed height */
     }
     .carousel-control-prev-icon,
     .carousel-control-next-icon {
