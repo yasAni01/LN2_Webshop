@@ -35,6 +35,7 @@
       { name: 'Contact', url: '/Contact' },
       { name: 'Profile', url: '/profile' },
       { name: 'Login', url: '/Login' }
+      { name: 'My Cart', url: '/cart' }
     ];
     return pages.filter((page) =>
       page.name.toLowerCase().includes(query.toLowerCase())
@@ -81,6 +82,9 @@
             <a class="nav-link" href="/Login">Login</a>
           </li>
         {/if}
+        <li class="nav-item">
+          <a class="nav-link" href="/cart">My Cart</a>
+        </li>
       </ul>
       <form class="d-flex position-relative" role="search" on:submit={handleSearch}>
         <input
@@ -115,14 +119,6 @@
 <div class="container mt-4">
   <slot />
 </div>
-
-<!-- Footer -->
-<footer class="footer bg-dark text-white text-center py-4 mt-5">
-  <div class="container">
-    <p class="mb-2">© 2024 Shopping Today. All Rights Reserved.</p>
-    <p class="mb-0">Made with ❤️ by Your Team</p>
-  </div>
-</footer>
 
 <style>
   :global(body) {
@@ -181,22 +177,5 @@
   input:focus {
     outline: none;
     box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
-  }
-
-  /* Footer Styles */
-  .footer {
-    background-color: #343a40;
-    color: #fff;
-    text-align: center;
-    padding: 1.5rem;
-  }
-
-  .footer p {
-    margin: 0.5rem 0;
-  }
-
-  .footer .container {
-    max-width: 1140px;
-    margin: 0 auto;
   }
 </style>
