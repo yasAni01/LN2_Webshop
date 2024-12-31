@@ -25,9 +25,8 @@
 <style>
     .shop-items {
         display: flex;
-        border: 3px solid #78999a;
-        background-color: rgb(34, 34, 34);
-        color: white;
+        border: 3px solid rgb(124, 108, 214);
+        color: rgb(56, 70, 81);
         padding: 5px;
         height: 100%;
         margin: 5px;

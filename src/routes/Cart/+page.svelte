@@ -3,6 +3,30 @@
     import Items from '$lib/Components/items.svelte';
 
     let total = data.items.filter(item => item.cart).reduce((sum, item) => sum + item.price, 0);
+
+    async function removeFromCart(itemId) {
+        try {
+            const response = await fetch(`/Items/${itemId}/remove-from-cart`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ _id: itemId })
+            });
+
+            const result = await response.json();
+            if (result.success) {
+                // Update the cart items and total
+                data.items = data.items.map(item => item._id === itemId ? { ...item, cart: false } : item);
+                total = data.items.filter(item => item.cart).reduce((sum, item) => sum + item.price, 0);
+            } else {
+                alert(`Failed to remove item from cart: ${result.error}`);
+            }
+        } catch (error) {
+            console.error('Error removing item from cart:', error);
+            alert('An error occurred while removing the item from the cart.');
+        }
+    }
 </script>
 
 <h1 class="text-center mb-4">Your <em class="text-primary">Shopping Cart</em></h1>
@@ -19,7 +43,7 @@
                         <h5 class="card-title">{item.name}</h5>
                         <p class="card-text">{item.description}</p>
                         <p class="card-text"><strong>${item.price.toFixed(2)}</strong></p>
-                        <a href="/items/{item.id}" class="btn btn-primary w-100">View Item</a>
+                        <button class="btn btn-primary w-100" on:click={() => removeFromCart(item._id)}>Delete</button>
                     </div>
                 </div>
             </div>
@@ -31,7 +55,7 @@
             <h2 class="mb-4">Order Summary</h2>
             <p class="mb-2">Total Items: {data.items.filter(item => item.cart).length}</p>
             <p class="mb-4">Total Price: <strong>${total.toFixed(2)}</strong></p>
-            <a href="/checkout" class="btn btn-success btn-lg w-100 mb-4 shadow-lg hover-shadow-lg">Proceed to Checkout</a>
+            <a href="/FailSafe" class="btn btn-success btn-lg w-100 mb-4 shadow-lg hover-shadow-lg">Proceed to Checkout</a>
             <a href="/Items" class="btn btn-primary btn-lg w-100 shadow-lg hover-shadow-lg">Keep Shopping</a>
         </div>
     </div>

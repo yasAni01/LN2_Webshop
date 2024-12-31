@@ -1,20 +1,15 @@
 <script>
     import { page } from '$app/stores';
-    import { onMount } from 'svelte';
 
     let _id = '';
     let item = {};
     let username = 'Anonymous';
     let rating = 1;
     let text = '';
+    let form = {};
 
     // Get the item ID from the URL
     $: _id = $page.params._id;
-
-    onMount(async () => {
-        const response = await fetch(`/Items/${_id}`);
-        item = await response.json();
-    });
 
     async function handleSubmit() {
         const formData = new FormData();
@@ -37,16 +32,13 @@
                 body: formData,
             });
 
-            const result = await response.json();
+            form = await response.json();
 
-            if (result.success) {
-                alert('Review submitted successfully!');
+            if (form.success) {
                 // Reset the form after successful submission
                 username = 'Anonymous';
                 rating = 1;
                 text = '';
-            } else {
-                alert(`Failed to submit review: ${result.error}`);
             }
         } catch (error) {
             console.error('Error submitting review:', error);
@@ -55,42 +47,64 @@
     }
 </script>
 
+<h1>Write a Review for {item.name}</h1>
+
+<form on:submit|preventDefault={handleSubmit} class="review-form">
+    <input type="hidden" id="id" bind:value={_id} />
+
+    <div class="form-group">
+        <label for="username">Username:</label>
+        <input type="text" id="username" bind:value={username} class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label for="rating">Rating:</label>
+        <select id="rating" bind:value={rating} class="form-control">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="text">Review:</label>
+        <textarea id="text" bind:value={text} required class="form-control"></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit Review</button>
+</form>
+
+{#if form?.success}
+    <div class="alert alert-success mt-4" role="alert">
+        <strong>Success!</strong> Review submitted successfully!
+    </div>
+{:else if form?.error}
+    <div class="alert alert-danger mt-4" role="alert">
+        <strong>Error:</strong> {form.error}
+    </div>
+{/if}
+
 <style>
-    form {
-        display: flex;
-        flex-direction: column;
-        max-width: 400px;
+    .review-form {
+        max-width: 600px;
         margin: auto;
     }
-    label {
-        margin-top: 10px;
+    .form-group {
+        margin-bottom: 1rem;
     }
-    input, textarea, select {
-        margin-top: 5px;
+    .form-control {
+        width: 100%;
+        padding: 0.5rem;
+        margin-top: 0.5rem;
     }
-    button {
-        margin-top: 20px;
+    .btn {
+        display: block;
+        width: 100%;
+        padding: 0.75rem;
+    }
+    .alert {
+        text-align: center;
     }
 </style>
-
-<form on:submit|preventDefault={handleSubmit}>
-    <label for="id">Product ID:</label>
-    <input type="text" id="id" bind:value={_id} readonly />
-
-    <label for="username">Username:</label>
-    <input type="text" id="username" bind:value={username} />
-
-    <label for="rating">Rating:</label>
-    <select id="rating" bind:value={rating}>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-    </select>
-
-    <label for="text">Review:</label>
-    <textarea id="text" bind:value={text} required></textarea>
-
-    <button type="submit">Submit Review</button>
-</form>
