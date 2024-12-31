@@ -35,6 +35,14 @@
       page.name.toLowerCase().includes(query.toLowerCase())
     );
   }
+  
+  function handleSuggestionClick(suggestion) {
+    searchQuery = suggestion.name;
+    showSuggestions = false;
+    window.location.href = suggestion.url;
+  }
+  
+
 </script>
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
@@ -135,7 +143,7 @@
 
 <style>
   .footer {
-    background: linear-gradient(45deg, #2c3e50, #34495e);
+    background: linear-gradient(45deg, #441158, rgb(81, 25, 58));
     color: #ecf0f1;
     padding: 2.5rem 1rem;
     font-family: 'Roboto', sans-serif;
