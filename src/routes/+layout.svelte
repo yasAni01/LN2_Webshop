@@ -35,7 +35,7 @@
       page.name.toLowerCase().includes(query.toLowerCase())
     );
   }
-  
+
   function handleSuggestionClick(suggestion) {
     searchQuery = suggestion.name;
     showSuggestions = false;
@@ -116,9 +116,7 @@
     <div class="footer-links">
       <h4>Quick Links</h4>
       <ul>
-        <li><a href="#about">About</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li><a href="/Contact">Contact</a></li>
       </ul>
     </div>
     <div class="footer-social">

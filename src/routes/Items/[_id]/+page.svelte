@@ -1,6 +1,7 @@
 <script>
     export let data; // Access data from server-side load function
     let item = data.item; // Assign item from data
+    let form = {}; // Object to store the result of add-to-cart action
 
     console.log(item); // Log the item to verify the data
 
@@ -14,15 +15,10 @@
                 body: JSON.stringify({ _id: item._id })
             });
 
-            const result = await response.json();
-            if (result.success) {
-                alert('Item added to cart successfully!');
-            } else {
-                alert(`Failed to add item to cart: ${result.error}`);
-            }
+            form = await response.json();
         } catch (error) {
             console.error('Error adding item to cart:', error);
-            alert('An error occurred while adding the item to the cart.');
+            form = { error: 'An error occurred while adding the item to the cart.' };
         }
     }
 </script>
@@ -43,8 +39,19 @@
                     <p class="item-rating">⭐ No ratings yet.</p>
                 {/if}
                 <button class="btn btn-primary" on:click={addToCart}>Add to Cart</button>
+
+                {#if form?.success}
+                <div class="alert alert-success mt-4" role="alert">
+                    <strong>Success!</strong> Item added to cart successfully!
+                </div>
+            {:else if form?.error}
+                <div class="alert alert-danger mt-4" role="alert">
+                    <strong>Error:</strong> {form.error}
+                </div>
+            {/if}
             </div>
         </div>
+        
 
         <div class="item-reviews">
             <div class="reviews-header">
@@ -66,6 +73,8 @@
     {:else}
         <p>Item not found.</p>
     {/if}
+
+
 </div>
 
 <style>
@@ -205,77 +214,72 @@
     }
 
     h1 {
-    font-family: 'Arial', sans-serif;
-    color: #333;
-    text-align: center;
-    margin-bottom: 20px;
-}
+        font-family: 'Arial', sans-serif;
+        color: #333;
+        text-align: center;
+        margin-bottom: 20px;
+    }
 
-form {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    background-color: #d1e6e9;
-}
+    form {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        background-color: #d1e6e9;
+    }
 
-label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: bold;
-    color: #3e2436;
-}
+    label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: bold;
+        color: #3e2436;
+    }
 
-input[type="text"],
-select,
+    input[type="text"],
+    select,
+    textarea {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 16px;
+    }
 
-textarea {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-}
+    button {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        background-color: #ff00bb;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+    }
 
-button {
-    display: block;
-    width: 100%;
-    padding: 10px;
-    background-color: #ff00bb;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-}
+    button:hover {
+        background-color: #9e00b3;
+    }
 
-button:hover {
-    background-color: #9e00b3;
-}
+    .alert {
+        max-width: 600px;
+        margin: 20px auto;
+        padding: 15px;
+        border-radius: 5px;
+        text-align: center;
+    }
 
-.alert {
-    max-width: 600px;
-    margin: 20px auto;
-    padding: 15px;
-    border-radius: 5px;
-    text-align: center;
-}
+    .alert-success {
+        background-color: #d4edda;
+        color: #155724;
+        border: 1px solid #c3e6cb;
+    }
 
-.alert-success {
-    background-color: #d4edda;
-    color: #155724;
-    border: 1px solid #c3e6cb;
-}
-
-.alert-danger {
-    background-color: #f8d7da;
-    color: #721c24;
-    border: 1px solid #f5c6cb;
-}
-
-
-
-
+    .alert-danger {
+        background-color: #f8d7da;
+        color: #721c24;
+        border: 1px solid #f5c6cb;
+    }
 </style>
