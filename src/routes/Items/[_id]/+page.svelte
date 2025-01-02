@@ -39,7 +39,7 @@
                     <input type="hidden" name="id" value={item._id} />
                     <button class="btn btn-danger">Remove from Cart</button>
                 </form>
-                  
+                
                 {:else}
                   <form method="POST" action="?/addToCart" use:enhance>
                     <input type="hidden" name="id" value={item._id} />
