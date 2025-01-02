@@ -28,10 +28,9 @@
   function getSuggestions(query) {
     const pages = [
       { name: 'Products', url: '/Items' },
-      { name: 'Contact', url: '/Contact' },
       { name: 'My Cart', url: '/cart' },
       { name: 'Locations', url: '/Locations' },
-      
+
     ];
     return pages.filter((page) =>
       page.name.toLowerCase().includes(query.toLowerCase())
@@ -66,9 +65,7 @@
         <li class="nav-item">
           <a class="nav-link" href="/Items">Products</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/Contact">Contact</a>
-        </li>
+      
         <li class="nav-item">
           <a class="nav-link" href="/Cart">My Cart</a>
         </li>
@@ -142,6 +139,18 @@
 </footer>
 
 <style>
+
+  .search-form {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto; /* Centering in its container */
+  }
+
+ 
   .footer {
     background: linear-gradient(45deg, #441158, rgb(81, 25, 58));
     color: #ecf0f1;
@@ -271,19 +280,15 @@
     justify-content: flex-start;
     position: relative;
     width: 100%;
-    max-width: 500px;
-    margin: 0 auto; /* Centering in its container */
+    max-width: auto;
   }
 
   .search-form input {
-    flex: 1; /* Allows the input to take available space */
-    min-width: 200px; /* Ensures the search bar is slightly larger than the button */
+    flex: auto;
     max-width: 100%; /* Prevents overflow */
-    height: 1.5rem; /* Keeps it slim */
-    padding: 0; /* Removes padding */
+    height: 20pt; /* Keeps it slim */
     border: 1px solid #ddd; /* Neutral border */
     border-radius: 0; /* Removes rounded edges */
-    font-size: 1rem; /* Readable font size */
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
   }
 
@@ -296,7 +301,7 @@
   .search-form button {
     margin-left: 0; /* No gap between input and button */
     padding: 0; /* Removes padding */
-    height: 1.5rem; /* Matches input height */
+    height: 20pt; /* Matches input height */
     border: none; /* Clean button appearance */
     background-color: #ffeb3b; /* Attention-grabbing color */
     color: #333; /* Legible text color */

@@ -29,6 +29,7 @@
                 <h1 class="item-title">{item.name}</h1>
                 <p class="item-price">Price: <span>${item.price}</span></p>
                 <p class="item-description">{item.description}</p>
+               
                 {#if item.reviews && item.reviews.length > 0}
                     <p class="item-rating">⭐ Average Rating: {(item.reviews.reduce((sum, review) => sum + review.rating, 0) / item.reviews.length).toFixed(1)} / 5</p>
                 {:else}

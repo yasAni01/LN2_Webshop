@@ -16,7 +16,7 @@
         <div class="card shadow-lg rounded-3 overflow-hidden d-flex flex-column">
             <Items {item} />
             <div class="card-body p-4 flex-grow-1">
-                <p class="card-text">{item.description}</p>
+                <p class="card-text">{item.description}</p>                
                 <a href="/Items/{item._id}" class="btn btn-primary w-100">Buy Now</a>
             </div>
         </div>
