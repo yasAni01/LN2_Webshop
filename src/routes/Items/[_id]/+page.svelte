@@ -14,44 +14,8 @@
     } else if (data.locations) {
         item.locations = data.locations;
     }
-    // Log the resolved locations
-    console.log('Item locations after:', item.locations);
-    async function addToCart() {
-        try {
-            const response = await fetch(`/Items/${item._id}/add-to-cart`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ _id: item._id })
-            });
-            form = await response.json();
-            if (form.success) {
-                // Reset the form after successful submission
-                item.cart = true;
-            }
-        } catch (error) {
-            console.error('Error adding item to cart:', error);
-            form = { error: 'An error occurred while adding the item to the cart.' };
-        }
-    }
 
-    async function handleDelete() {
-        try {
-            const response = await fetch(`/Items/${item._id}/delete-item`, {
-                method: 'DELETE',
-            });
-            const data = await response.json();
-            if (data.success) {
-                window.location.href = '/';
-            } else {
-                alert(`Failed to delete item: ${data.error}`);
-            }
-        } catch (error) {
-            console.error('Error deleting item:', error);
-            alert('An error occurred while deleting the item.');
-        }
-    }
+
 </script>
 
 <div class="item-page">
@@ -69,7 +33,23 @@
                 {:else}
                     <p class="item-rating">⭐ No ratings yet.</p>
                 {/if}
-                <button class="btn btn-primary" on:click={addToCart}>Add to Cart</button>
+                
+                {#if item.cart}
+                <form method="POST" action="?/removeFromCart" use:enhance>
+                    <input type="hidden" name="id" value={item._id} />
+                    <button class="btn btn-danger">Remove from Cart</button>
+                </form>
+                  
+                {:else}
+                  <form method="POST" action="?/addToCart" use:enhance>
+                    <input type="hidden" name="id" value={item._id} />
+                    <button class="btn btn-success">Add to Cart</button>
+                  </form>
+                {/if}
+
+
+
+
                 {#if form?.success}
                     <div class="alert alert-success mt-4" role="alert">
                         <strong>Success!</strong> Item added to cart successfully!
@@ -116,8 +96,10 @@
     {/if}
 </div>
 
-<button on:click={handleDelete} class="btn btn-danger mt-4">Delete Item</button>
-
+<form method="POST" action="?/delete">
+    <input type="hidden" name="id" value={item._id}>
+    <button class="btn btn-danger">Delete Item</button>
+  </form>
 <style>
     .item-page {
         max-width: 1200px;
