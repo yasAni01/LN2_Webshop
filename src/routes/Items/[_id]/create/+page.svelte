@@ -45,6 +45,10 @@
             alert('An error occurred while submitting your review.');
         }
     }
+
+
+
+
 </script>
 
 <h1>Write a Review for {item.name}</h1>
@@ -86,6 +90,11 @@
     </div>
 {/if}
 
+
+
+
+
+
 <style>
     .review-form {
         max-width: 600px;
@@ -108,3 +117,6 @@
         text-align: center;
     }
 </style>
+
+  
+
