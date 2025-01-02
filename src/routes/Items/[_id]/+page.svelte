@@ -1,11 +1,12 @@
 <script>
     import Locations from '../../../lib/Components/locations.svelte';
     export let data;
+
     let item = data.item || {};
     item.locations = item.locations || [];
     let form = {};
-    // Log the locations to the console for debugging
-    console.log('Item locations before:', item.locations);
+
+
     // Correct the logic for filtering locations
     if (item.locationsID && data.locations) {
         item.locations = data.locations.filter(location => 
@@ -39,7 +40,7 @@
                     <input type="hidden" name="id" value={item._id} />
                     <button class="btn btn-danger">Remove from Cart</button>
                 </form>
-                
+
                 {:else}
                   <form method="POST" action="?/addToCart" use:enhance>
                     <input type="hidden" name="id" value={item._id} />

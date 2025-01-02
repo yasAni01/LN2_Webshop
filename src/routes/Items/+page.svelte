@@ -3,6 +3,8 @@
     import Items from '$lib/Components/items.svelte';
 </script>
 
+
+
 <h1 class="text-center mb-4">Want to add a new <em class="text-primary">Item</em>? Go ahead!</h1>
 <a href="/Items/itemcreate" class="btn btn-primary btn-lg w-100 mb-4 shadow-lg hover-shadow-lg">Create New Item</a>
 
@@ -21,6 +23,8 @@
     </div>
     {/each}
 </div>
+
+
 
 <style>
     /* Ensure all cards are the same height */

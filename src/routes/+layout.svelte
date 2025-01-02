@@ -29,7 +29,9 @@
     const pages = [
       { name: 'Products', url: '/Items' },
       { name: 'Contact', url: '/Contact' },
-      { name: 'My Cart', url: '/cart' }
+      { name: 'My Cart', url: '/cart' },
+      { name: 'Locations', url: '/Locations' },
+      
     ];
     return pages.filter((page) =>
       page.name.toLowerCase().includes(query.toLowerCase())

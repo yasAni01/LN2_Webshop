@@ -1,26 +1,10 @@
 <script>
-    async function handleSubmit(event) {
-        event.preventDefault();
-        const formData = new FormData(event.target);
-
-        const response = await fetch("/Items/itemcreate", {
-            method: "POST",
-            body: formData,
-        });
-
-        if (response.ok) {
-            window.location.href = "/Items"; // Redirect to the items list
-        } else {
-            alert("Failed to create item. Please try again.");
-                console.error("Error:", await response.text());
-            }
-        }
+let {form} = $props();
     </script>
-
 
 <a href="/Items">Back</a>
 <h1>Add an Item</h1>
-<form on:submit={handleSubmit}>
+<form method="POST" action="?/create">
     <div class="mb-3">
         <label for="name" class="form-label">Name</label>
         <input id="name" name="name" class="form-control" type="text" required />
@@ -56,3 +40,6 @@
     <button type="submit" class="btn btn-primary">Add Item</button>
 </form>
 
+{#if form?.success}
+  <p>Item created</p>
+{/if}
