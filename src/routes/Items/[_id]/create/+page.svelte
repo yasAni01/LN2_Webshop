@@ -82,7 +82,7 @@
 
 {#if form?.success}
     <div class="alert alert-success mt-3" role="alert">
-        <strong>YIPPY!</strong> Review has been successfully submitted successfully!
+        <strong>YIPPY!</strong> Review has been successfully submitted!
     </div>
 {:else if form?.error}
     <div class="alert alert-danger mt-2" role="alert">
