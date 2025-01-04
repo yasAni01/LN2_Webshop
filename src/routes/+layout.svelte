@@ -113,11 +113,7 @@
       <p>We’re here to bring joy to your day. Our locations are crafted with love to ensure a memorable experience for everyone.</p>
     </div>
     <div class="footer-links">
-      <h4>Quick Links</h4>
-      <ul>
-        <li><a href="/Contact">Contact</a></li>
-      </ul>
-    </div>
+
     <div class="footer-social">
       <h4>Follow Us</h4>
       <div class="social-icons">
