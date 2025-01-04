@@ -29,7 +29,9 @@
                 <h1 class="item-title">{item.name}</h1>
                 <p class="item-price">Price: <span>${item.price}</span></p>
                 <p class="item-description">{item.description}</p>
-               
+
+
+
                 {#if item.reviews && item.reviews.length > 0}
                     <p class="item-rating">⭐ Average Rating: {(item.reviews.reduce((sum, review) => sum + review.rating, 0) / item.reviews.length).toFixed(1)} / 5</p>
                 {:else}
@@ -98,11 +100,20 @@
     {/if}
 </div>
 
+<div class="item-delete">
 <form method="POST" action="?/delete">
     <input type="hidden" name="id" value={item._id}>
     <button class="btn btn-danger">Delete Item</button>
   </form>
+</div>
+
+
+
 <style>
+    .item-delete {
+        margin-top: 20px;
+    }
+    
     .item-page {
         max-width: 1200px;
         margin: 0 auto;
