@@ -98,22 +98,34 @@
     {:else}
         <p>Item not found.</p>
     {/if}
+
+    <div class="container item-delete">
+        <form method="POST" action="?/delete">
+            <input type="hidden" name="id" value={item._id}>
+            <button class="btn btn-danger">Delete Item</button>
+          </form>
+        </div>
 </div>
 
-<div class="item-delete">
-<form method="POST" action="?/delete">
-    <input type="hidden" name="id" value={item._id}>
-    <button class="btn btn-danger">Delete Item</button>
-  </form>
-</div>
+
 
 
 
 <style>
     .item-delete {
         margin-top: 20px;
+        padding: 20px;
+        background-color: #ffffff;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        align-items: center;
+        justify-content: center;
+
+
+
+
     }
-    
+
     .item-page {
         max-width: 1200px;
         margin: 0 auto;
