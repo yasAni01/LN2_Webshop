@@ -1,6 +1,9 @@
 <script>
-    let { data } = $props();
+    import { onMount } from 'svelte';
+    import Chart from 'chart.js/auto';
     import Items from '$lib/Components/items.svelte';
+
+    export let data;
 
     // Shuffle the array
     function shuffle(array) {
@@ -19,6 +22,43 @@
     for (let i = 0; i < randomItems.length; i += 3) {
         groupedItems.push(randomItems.slice(i, i + 3));
     }
+
+    let chart;
+
+    // Calculate statistics
+    let totalItems = data.items.length;
+    let meanPrice = (data.items.reduce((sum, item) => sum + item.price, 0) / totalItems).toFixed(2);
+    let meanReview = (data.items.reduce((sum, item) => sum + (item.reviews ? item.reviews.length : 0), 0) / totalItems).toFixed(2);
+
+    onMount(() => {
+        const ctx = document.getElementById('priceChart').getContext('2d');
+        chart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: data.items.map(item => item.name),
+                datasets: [{
+                    label: 'Item Prices',
+                    data: data.items.map(item => item.price),
+                    backgroundColor: 'rgba(255, 99, 132, 1)',
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    borderWidth: 5,
+
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Price in $'
+                        }
+                        
+                    }
+                }
+            }
+        });
+    });
 </script>
 
 <div class="welcome">
@@ -50,6 +90,17 @@
     </button>
 </div>
 
+
+<div class="statistics">
+
+<h2>Our Statistics</h2>
+<canvas id="priceChart" width="1000" height="400"></canvas>
+
+    <p><strong>Total Items:</strong> {totalItems}</p>
+    <p><strong>Mean Price:</strong> ${meanPrice}</p>
+    <p><strong>Mean Review:</strong> {meanReview}</p>
+</div>
+
 <style>
     :global(body) {
         font-family: 'Roboto', sans-serif;
@@ -61,21 +112,21 @@
 
     .welcome {
         text-align: center;
-        padding: 20px 15px;
+        padding: 40px 20px;
         margin-bottom: 40px;
         background: linear-gradient(90deg, #ff7e5f, #feb47b);
         color: white;
-        border-radius: 8px;
+        border-radius: 12px;
     }
 
     .welcome h1 {
-        font-size: 3rem;
+        font-size: 3.5rem;
         font-weight: bold;
         margin-bottom: 10px;
     }
 
     .welcome p {
-        font-size: 1.3rem;
+        font-size: 1.5rem;
         margin: 0;
     }
 
@@ -88,29 +139,34 @@
 
     .carousel-inner {
         background-color: white;
-        border-radius: 10px;
+        border-radius: 12px;
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         overflow: hidden;
     }
 
+    .carousel-item.active {
+        display: block;
+    }
+
     .carousel-item {
+        display: none;
         text-align: center;
-        padding: 20px;
+        padding: 30px;
     }
 
     .item-group {
         display: flex;
         justify-content: center;
-        gap: 20px;
+        gap: 30px;
     }
 
     Items {
-        max-width: 300px;
-        width: 300px;
-        height: 400px;
-        border-radius: 8px;
+        max-width: 350px;
+        width: 350px;
+        height: 450px;
+        border-radius: 12px;
         overflow: hidden;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
         transition: transform 0.3s ease-in-out;
     }
 
@@ -122,8 +178,8 @@
     .carousel-control-next-icon {
         background-color: rgba(0, 0, 0, 0.5);
         border-radius: 50%;
-        width: 40px;
-        height: 40px;
+        width: 50px;
+        height: 50px;
     }
 
     .carousel-control-prev-icon::before,
@@ -136,4 +192,24 @@
         width: auto;
         height: auto;
     }
+
+    #priceChart {
+        margin: 40px auto;
+        display: block;
+        max-width: 1000px;
+    }
+
+    .statistics {
+        text-align: center;
+        font-size: 1.2rem;
+        margin-top: 20px;
+        background-color: rgba(208, 138, 174, 0.345);
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+
+
+    }
+
+  
 </style>
