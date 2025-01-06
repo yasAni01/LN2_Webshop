@@ -30,6 +30,8 @@
       { name: 'Products', url: '/Items' },
       { name: 'My Cart', url: '/cart' },
       { name: 'Locations', url: '/Locations' },
+      { name: 'Home', url: '/' },
+     { name: 'Create Item', url: '/Items/itemcreate' }, 
 
     ];
     return pages.filter((page) =>
