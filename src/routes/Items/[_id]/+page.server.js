@@ -1,7 +1,7 @@
-
 import db from "$lib/db.js";
 import dbL from "$lib/dbLocation.js";
 import { redirect } from "@sveltejs/kit";
+
 export async function load({ params }) {
     console.log("Loading item with ID:", params._id); // Added console log
     const item = await db.getitem(params._id); // Fetch the item by ID

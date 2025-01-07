@@ -46,12 +46,9 @@
         }
     }
 
-
-
-
 </script>
 
-<h1>Write a Review for {item.name}</h1>
+<h1>Write a Review</h1>
 
 <form on:submit|preventDefault={handleSubmit} class="review-form">
     <input type="hidden" id="id" bind:value={_id} />
