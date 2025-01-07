@@ -1,9 +1,12 @@
 <script>
 let {form} = $props();
-    </script>
+
+</script>
 
 <a href="/Items">Back</a>
 <h1>Add an Item</h1>
+
+
 <form method="POST" action="?/create">
     <div class="mb-3">
         <label for="name" class="form-label">Name</label>
@@ -40,6 +43,13 @@ let {form} = $props();
     <button type="submit" class="btn btn-primary">Add Item</button>
 </form>
 
+
 {#if form?.success}
-  <p>Item created</p>
+    <div class="alert alert-success mt-3" role="alert">
+        <strong>YIPPY!</strong> Item has been successfully created!
+    </div>
+{:else if form?.error}
+    <div class="alert alert-danger mt-2" role="alert">
+        <strong>OH NO an Error:</strong> {form.error}
+    </div>
 {/if}

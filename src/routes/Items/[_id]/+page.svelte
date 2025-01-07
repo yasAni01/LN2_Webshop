@@ -9,7 +9,8 @@
 
     // Correct the logic for filtering locations
     if (item.locationsID && data.locations) {
-        item.locations = data.locations.filter(location => 
+        item.locations = data.locations.filter(
+            location => 
             item.locationsID.includes(location._id)
         );
     } else if (data.locations) {

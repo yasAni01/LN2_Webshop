@@ -9,8 +9,7 @@ export async function POST({ request, params }) {
         text: data.get('text'),
     };
 
-    const itemId = params._id;  // Get the item ID from the URL params
-
+    const itemId = params._id;  
     try {
         const item = await db.getitem(itemId);
         if (!item) {
@@ -22,7 +21,6 @@ export async function POST({ request, params }) {
         item.reviews = item.reviews || [];
         item.reviews.push(review);
 
-        // Update the full item
         const updatedItem = {
             ...item,
             reviews: item.reviews

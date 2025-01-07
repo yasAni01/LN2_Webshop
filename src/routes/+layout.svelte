@@ -1,15 +1,17 @@
 <script>
   import "./styles.css";
+  import { enhance } from '$app/forms';
 
-  let searchQuery = ''; // Variable to bind the search input
+
+  let searchQuery = ''; 
   let suggestions = [];
   let showSuggestions = false;
 
   function handleSearch(event) {
-    event.preventDefault(); // Prevent the default form submission
+    event.preventDefault(); 
     if (searchQuery.trim() !== '') {
       console.log('Search query:', searchQuery);
-      // Redirect to a search results page or perform search action
+
       window.location.href = `/${encodeURIComponent(searchQuery)}`;
     }
   }
@@ -25,6 +27,7 @@
     }
   }
 
+  
   function getSuggestions(query) {
     const pages = [
       { name: 'Products', url: '/Items' },
@@ -34,10 +37,12 @@
      { name: 'Create Item', url: '/Items/itemcreate' }, 
 
     ];
+   
     return pages.filter((page) =>
       page.name.toLowerCase().includes(query.toLowerCase())
     );
   }
+
 
   function handleSuggestionClick(suggestion) {
     searchQuery = suggestion.name;
@@ -75,6 +80,8 @@
           <a class="nav-link" href="/Locations">Locations</a>
         </li>
       </ul>
+
+
       <form class="d-flex position-relative search-form" role="search" onsubmit={handleSearch}>
         <input
           class="form-control me-2 border-0 rounded-pill shadow-sm"
@@ -105,9 +112,17 @@
   </div>
 </nav>
 
+
+
+
+
 <div class="container mt-" style="margin-top: calc(70px + 1rem);">
   <slot />
 </div>
+
+
+
+
 <footer class="footer mt-4">
   <div class="footer-container">
     <div class="footer-about">
@@ -135,6 +150,8 @@
     <p>&copy; {new Date().getFullYear()} Your Company. All Rights Reserved.</p>
   </div>
 </footer>
+
+
 
 <style>
 

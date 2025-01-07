@@ -2,29 +2,24 @@
     export let data;
     import Items from '$lib/Components/items.svelte';
 
-    let total = data.items.filter(item => item.cart).reduce((sum, item) => sum + item.price, 0);
+    let total = data.items.filter(item => item.cart).reduce((sum, item) => sum + item.price, 0).toFixed(2);
 
     async function removeFromCart(itemId) {
-        try {
-            const response = await fetch(`/Items/${itemId}/remove-from-cart`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ _id: itemId })
-            });
+        const response = await fetch(`/Items/${itemId}/remove-from-cart`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ _id: itemId })
+        });
 
-            const result = await response.json();
-            if (result.success) {
-                // Update the cart items and total
-                data.items = data.items.map(item => item._id === itemId ? { ...item, cart: false } : item);
-                total = data.items.filter(item => item.cart).reduce((sum, item) => sum + item.price, 0);
-            } else {
-                alert(`Failed to remove item from cart: ${result.error}`);
-            }
-        } catch (error) {
-            console.error('Error removing item from cart:', error);
-            alert('An error occurred while removing the item from the cart.');
+        const result = await response.json();
+        if (result.success) {
+            // Update the cart items and total
+            data.items = data.items.map(item => item._id === itemId ? { ...item, cart: false } : item);
+            total = data.items.filter(item => item.cart).reduce((sum, item) => sum + item.price, 0).toFixed(2);
+        } else {
+            alert(`Failed to remove item from cart: ${result.error}`);
         }
     }
 </script>

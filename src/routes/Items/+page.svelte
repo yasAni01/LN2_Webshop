@@ -27,7 +27,6 @@
 
 
 <style>
-    /* Ensure all cards are the same height */
     .card {
         border: none;
         transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -40,7 +39,6 @@
         flex-direction: column;
     }
 
-    /* Ensuring cards expand and take equal height */
     .card-body {
         display: flex;
         flex-direction: column;
@@ -48,7 +46,6 @@
         flex-grow: 1;
     }
 
-    /* Hover effect on cards */
     .card:hover {
         transform: translateY(-10px);
         box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
@@ -69,7 +66,6 @@
         box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
     }
 
-    /* Some spacing adjustments */
     .text-primary {
         color: #007bff;
     }

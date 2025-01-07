@@ -8,41 +8,28 @@
     let text = '';
     let form = {};
 
-    // Get the item ID from the URL
     $: _id = $page.params._id;
 
+    
     async function handleSubmit() {
         const formData = new FormData();
-        formData.append('_id', _id);  // Send the dynamic _id
+        formData.append('_id', _id); 
         formData.append('username', username);
-        formData.append('rating', rating.toString());
+        formData.append('rating', rating);
         formData.append('text', text);
 
-        // Append other item properties as hidden fields
-        for (const key in item) {
-            if (key !== 'reviews') {
-                formData.append(key, item[key]);
-            }
-        }
+        const response = await fetch(`/Items/${_id}/create`, {
+            method: 'POST',
+            body: formData,
+        });
 
-        try {
-            // Use the dynamic route `/items/[id]/create/` for submission
-            const response = await fetch(`/Items/${_id}/create`, {
-                method: 'POST',
-                body: formData,
-            });
+        //server response "saved as json
+        form = await response.json();
 
-            form = await response.json();
-
-            if (form.success) {
-                // Reset the form after successful submission
-                username = 'Anonymous';
-                rating = 1;
-                text = '';
-            }
-        } catch (error) {
-            console.error('Error submitting review:', error);
-            alert('An error occurred while submitting your review.');
+        if (form.success) {
+            username = 'Anonymous';
+            rating = 1;
+            text = '';
         }
     }
 
@@ -86,8 +73,6 @@
         <strong>OH NO an Error:</strong> {form.error}
     </div>
 {/if}
-
-
 
 
 

@@ -5,7 +5,6 @@
 
     export let data;
 
-    // Shuffle the array
     function shuffle(array) {
         for (let i = array.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
@@ -14,10 +13,8 @@
         return array;
     }
 
-    // Get 6 random items
     let randomItems = shuffle(data.items).slice(0, 6);
 
-    // Group items into sets of 3
     let groupedItems = [];
     for (let i = 0; i < randomItems.length; i += 3) {
         groupedItems.push(randomItems.slice(i, i + 3));
@@ -25,7 +22,6 @@
 
     let chart;
 
-    // Calculate statistics
     let totalItems = data.items.length;
     let meanPrice = (data.items.reduce((sum, item) => sum + item.price, 0) / totalItems).toFixed(2);
     let meanReview = (data.items.reduce((sum, item) => sum + (item.reviews ? item.reviews.length : 0), 0) / totalItems).toFixed(2);
@@ -207,9 +203,6 @@
         padding: 20px;
         border-radius: 12px;
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-
-
     }
 
-  
 </style>

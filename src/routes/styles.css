@@ -57,12 +57,10 @@ body {
 }
 
 .navbar ul li a:hover {
-    background-color: #495057; /* Slightly lighter background */
-    color: #81c784; /* Green highlight */
+    background-color: #495057; 
+    color: #81c784; 
 }
 
-
-/* Carousel styles (Bootstrap) */
 .carousel {
     margin: 2rem 0;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
@@ -136,9 +134,8 @@ body {
     background-color: #45a049;
 }
 
-/* Footer styles */
 .footer {
-    background-color: #85429a; /* Matches navbar */
+    background-color: #85429a; 
     color: #e0e0e0;
     padding: 2rem;
     text-align: center;
