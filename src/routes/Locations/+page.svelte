@@ -73,46 +73,24 @@
 </div>
 
 <style>
-    /* Map styling */
+
     #map {
         width: 100%;
-        height: 300px; /* Reduced height */
+        height: 300px;
         margin-bottom: 2rem;
         border-radius: 8px;
         overflow: hidden;
     }
 
-    /* Locations container */
     .locations-container {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
         gap: 1.5rem;
     }
 
-    .card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
-    }
-
-    .card-body {
-        padding: 1.5rem;
-    }
-
-    .card-title {
-        font-size: 1.25rem;
-        margin-bottom: 0.5rem;
-        font-weight: bold;
-        color: #333;
-    }
-
-    .card-text {
-        font-size: 1rem;
-        color: #555;
-    }
-
-    /* City title styling */
+  
     .city-title {
-        grid-column: 1 / -1; /* Make it span the full width of the grid */
+        grid-column: 1 / -1; 
         margin-top: 2rem;
         font-size: 1.5rem;
         font-weight: bold;
@@ -120,10 +98,4 @@
         text-align: left;
     }
 
-    /* Responsive padding for smaller screens */
-    @media (max-width: 768px) {
-        .locations-container {
-            padding: 1rem;
-        }
-    }
 </style>

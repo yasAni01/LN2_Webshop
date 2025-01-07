@@ -30,11 +30,9 @@
         padding: 5px;
         height: 100%;
         margin: 5px;
-    }
-    .shop-item {
-        display: flex;
         flex-direction: column;
         align-items: center;
+        
     }
     .image-container {
         display: flex;

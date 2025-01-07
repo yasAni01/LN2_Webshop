@@ -178,15 +178,11 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    gap: 2rem;
     max-width: 1200px;
     margin: 0 auto;
   }
 
   .footer h4 {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-    color: #ecf0f1;
     border-bottom: 2px solid #e74c3c;
     display: inline-block;
     padding-bottom: 0.5rem;
@@ -195,26 +191,6 @@
   .footer-about p {
     line-height: 1.8;
     color: #bdc3c7;
-  }
-
-  .footer-links ul {
-    list-style: none;
-    padding: 0;
-  }
-
-  .footer-links li {
-    margin-bottom: 0.8rem;
-  }
-
-  .footer-links a {
-    text-decoration: none;
-    color: #e74c3c;
-    font-weight: 500;
-    transition: color 0.3s ease;
-  }
-
-  .footer-links a:hover {
-    color: #f39c12;
   }
 
   .footer-social .social-icons {
@@ -229,7 +205,6 @@
     background-color: #ecf0f1;
     padding: 0.3rem;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
 
   .footer-social img:hover {
@@ -243,28 +218,7 @@
     color: #bdc3c7;
     font-size: 0.9rem;
   }
-
-  .footer-bottom p {
-    margin: 0;
-  }
-
-  @media (max-width: 768px) {
-    .footer-container {
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-    }
-
-    .footer-about,
-    .footer-links,
-    .footer-social {
-      flex: none;
-      width: 100%;
-      max-width: 400px;
-    }
-  }
-
-  /* General Navbar Styling */
+ 
   .navbar {
     background: linear-gradient(45deg, #8a317e, #ef8dda);
     padding: 1rem 1.5rem;

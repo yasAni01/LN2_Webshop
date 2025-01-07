@@ -31,8 +31,6 @@
         margin-bottom: 1rem;
     }
 
-
-
     strong {
         color: #222222;
     }

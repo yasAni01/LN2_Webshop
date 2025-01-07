@@ -51,30 +51,4 @@
         box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
     }
 
-    .btn-primary {
-        background-color: #007bff;
-        border-color: #007bff;
-        transition: all 0.3s ease;
-    }
-
-    .btn-primary:hover {
-        background-color: #0056b3;
-        border-color: #004085;
-    }
-
-    .shadow-lg {
-        box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
-    }
-
-    .text-primary {
-        color: #007bff;
-    }
-
-    .mb-4, .mb-5 {
-        margin-bottom: 1.5rem;
-    }
-
-    .w-100 {
-        width: 100%;
-    }
 </style>

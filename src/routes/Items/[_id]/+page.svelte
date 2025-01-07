@@ -121,10 +121,6 @@
         border-radius: 10px;
         align-items: center;
         justify-content: center;
-
-
-
-
     }
 
     .item-page {
@@ -149,16 +145,8 @@
         overflow: hidden;
         border-radius: 12px;
     }
-    .item-image img {
-        width: 100%;
-        height: auto;
-        object-fit: cover;
-        transition: transform 0.3s ease;
-        border-radius: 12px;
-    }
-    .item-image img:hover {
-        transform: scale(1.05);
-    }
+
+
     .item-details {
         flex: 2;
         padding: 20px;
@@ -176,7 +164,7 @@
         margin-bottom: 20px;
     }
     .item-price span {
-        color: #e91e63; /* A soft pinkish-red for price */
+        color: #e91e63; 
     }
     .item-description {
         font-size: 1rem;
@@ -189,22 +177,7 @@
         color: #ff9800;
         margin-bottom: 20px;
     }
-    .btn {
-        padding: 10px 20px;
-        font-size: 16px;
-        border: none;
-        border-radius: 8px;
-        cursor: pointer;
-        transition: all 0.3s ease;
-    }
-    .btn-primary {
-        background-color: #007bff;
-        color: #fff;
-    }
-    .btn-primary:hover {
-        background-color: #0056b3;
-    }
-
+   
     .btn-secondary {
         background-color: #6c757d;
         color: #fff;

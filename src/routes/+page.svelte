@@ -98,13 +98,6 @@
 </div>
 
 <style>
-    :global(body) {
-        font-family: 'Roboto', sans-serif;
-        margin: 0;
-        padding: 0;
-        background-color: #f9f9f9;
-        color: #333;
-    }
 
     .welcome {
         text-align: center;
@@ -121,24 +114,6 @@
         margin-bottom: 10px;
     }
 
-    .welcome p {
-        font-size: 1.5rem;
-        margin: 0;
-    }
-
-    h2 {
-        text-align: center;
-        font-size: 2.5rem;
-        margin-bottom: 20px;
-        color: #444;
-    }
-
-    .carousel-inner {
-        background-color: white;
-        border-radius: 12px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        overflow: hidden;
-    }
 
     .carousel-item.active {
         display: block;
@@ -156,38 +131,14 @@
         gap: 30px;
     }
 
-    Items {
-        max-width: 350px;
-        width: 350px;
-        height: 450px;
-        border-radius: 12px;
-        overflow: hidden;
-        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-        transition: transform 0.3s ease-in-out;
-    }
-
-    Items:hover {
-        transform: translateY(-10px);
-    }
-
     .carousel-control-prev-icon,
     .carousel-control-next-icon {
-        background-color: rgba(0, 0, 0, 0.5);
+        background-color: rgba(74, 8, 68, 0.5);
         border-radius: 50%;
         width: 50px;
         height: 50px;
     }
 
-    .carousel-control-prev-icon::before,
-    .carousel-control-next-icon::before {
-        display: none;
-    }
-
-    .carousel-control-prev,
-    .carousel-control-next {
-        width: auto;
-        height: auto;
-    }
 
     #priceChart {
         margin: 40px auto;
@@ -203,6 +154,15 @@
         padding: 20px;
         border-radius: 12px;
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+
     }
 
+    h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #444;
+}
+
+  
 </style>
