@@ -29,21 +29,31 @@
 <div class="row">
     <div class="col-lg-8">
         <h2 class="mb-4">Items in your cart</h2>
+
+
         <div class="row g-4">
             {#each data.items.filter(item => item.cart) as item}
+
             <div class="col-sm-6 col-md-4">
                 <div class="card shadow-lg rounded-3 overflow-hidden d-flex flex-column">
+
                     <Items {item} />
                     <div class="card-body p-4 flex-grow-1">
                         <p class="card-text">{item.description}</p>
                         <p class="card-text"><strong>${item.price}</strong></p>
                         <button class="btn btn-primary w-100" on:click={() => removeFromCart(item._id)}>Delete</button>
+                   
                     </div>
                 </div>
             </div>
             {/each}
+
         </div>
+
+
     </div>
+
+
     <div class="col-lg-4 mt-4 mt-lg-0">
         <div class="card shadow-lg rounded-3 p-4">
             <h2 class="mb-4">Order Summary</h2>
@@ -53,6 +63,8 @@
             <a href="/Items" class="btn btn-primary btn-lg w-100 shadow-lg hover-shadow-lg">Keep Shopping</a>
         </div>
     </div>
+
+    
 </div>
 
 <style>

@@ -24,6 +24,5 @@ export async function POST({ request, params }) {
     await db.updateitem(updatedItem);
 
     return new Response(JSON.stringify({ success: true }), {
-        status: 200,
     });
 }

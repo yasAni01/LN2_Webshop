@@ -22,8 +22,7 @@
     async function initializeMap() {
         const { Map, TileLayer, Marker, icon } = await import('leaflet');
 
-        // Initialize the map centered on Switzerland
-        map = new Map('map').setView([46.8, 8.2], 7);
+        map = new Map('map').setView([48.5, 8.5],5);
 
         new TileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
