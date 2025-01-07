@@ -9,32 +9,21 @@ export async function POST({ request, params }) {
         text: data.get('text'),
     };
 
-    const itemId = params._id;  
-    try {
-        const item = await db.getitem(itemId);
-        if (!item) {
-            return new Response(JSON.stringify({ success: false, error: 'Item not found' }), {
-                status: 404,
-            });
-        }
+    const itemId = params._id;
 
-        item.reviews = item.reviews || [];
-        item.reviews.push(review);
+    const item = await db.getitem(itemId);
 
-        const updatedItem = {
-            ...item,
-            reviews: item.reviews
-        };
+    item.reviews = item.reviews || [];
+    item.reviews.push(review);
 
-        await db.updateitem(updatedItem);
+    const updatedItem = {
+        ...item,
+        reviews: item.reviews
+    };
 
-        return new Response(JSON.stringify({ success: true }), {
-            status: 200,
-        });
-    } catch (error) {
-        console.error(error);
-        return new Response(JSON.stringify({ success: false, error: 'Failed to update item' }), {
-            status: 500,
-        });
-    }
+    await db.updateitem(updatedItem);
+
+    return new Response(JSON.stringify({ success: true }), {
+        status: 200,
+    });
 }
