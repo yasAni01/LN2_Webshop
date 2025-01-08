@@ -6,21 +6,19 @@
     item.locations = item.locations || [];
     let form = {};
 
-
-    // Correct the logic for filtering locations
     if (item.locationsID && data.locations) {
         item.locations = data.locations.filter(
             location => 
             item.locationsID.includes(location._id)
         );
-    } else if (data.locations) {
-        item.locations = data.locations;
     }
 
 
 </script>
 
 <div class="item-page">
+
+    <!-- Produkt info -->
     {#if item}
         <div class="item-container">
             <div class="item-image">
@@ -52,9 +50,6 @@
                   </form>
                 {/if}
 
-
-
-
                 {#if form?.success}
                     <div class="alert alert-success mt-4" role="alert">
                         <strong>Success!</strong> Item added to cart successfully!
@@ -66,6 +61,8 @@
                 {/if}
             </div>
         </div>
+
+    <!-- Locations info -->
         <div class="item-locations">
             <h2>Available for pickup in..</h2>
             {#if item.locations && item.locations.length > 0}
@@ -79,6 +76,7 @@
             {/if}
         </div>
         
+        <!-- Reviews info -->
         <div class="item-reviews">
             <div class="reviews-header">
                 <h2>Reviews</h2>
@@ -100,6 +98,7 @@
         <p>Item not found.</p>
     {/if}
 
+    <!-- Delete item -->
     <div class="container item-delete">
         <form method="POST" action="?/delete">
             <input type="hidden" name="id" value={item._id}>
@@ -107,8 +106,6 @@
           </form>
         </div>
 </div>
-
-
 
 
 
