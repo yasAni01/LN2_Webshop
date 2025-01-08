@@ -14,6 +14,7 @@
     </div>
 </div>
 
+
 <style>
     .location-card {
         padding: 1.5rem;
